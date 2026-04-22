@@ -35,7 +35,7 @@
     .btn:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
     .btn-primary { background: var(--ocean); color: var(--white); }
     .btn-secondary { background: var(--white); color: var(--deep); border: 1px solid rgba(26,111,163,0.3); }
-    .hero-avatar-initials { width: 150px; height: 150px; border-radius: 50%; border: 4px solid var(--white); box-shadow: 0 8px 30px rgba(26,111,163,0.2); background: var(--ocean); display: flex; align-items: center; justify-content: center; font-family: 'Lora', serif; font-size: 2.5rem; color: var(--white); font-weight: 600; flex-shrink: 0; }
+    .hero-avatar-initials { width: 150px; height: 150px; border-radius: 50%; border: 4px solid var(--white); box-shadow: 0 8px 30px rgba(26,111,163,0.2); flex-shrink: 0; }
 
     main { max-width: 960px; margin: 0 auto; padding: 3rem 2rem 5rem; }
     section { margin-bottom: 4rem; }
@@ -59,15 +59,43 @@
     .tl-inst a:hover { text-decoration: underline; }
     .tl-detail { color: var(--muted); font-size: 0.875rem; margin-top: 0.15rem; }
 
+    /* ── RESEARCH ─────────────────────────────────────── */
     .research-item { background: var(--white); border: 1px solid rgba(26,111,163,0.12); border-radius: 14px; padding: 1.75rem; margin-bottom: 1.5rem; position: relative; overflow: hidden; }
     .research-item::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--ocean), var(--sky)); }
     .research-item h3 { font-family: 'Lora', serif; font-size: 1.05rem; color: var(--deep); margin-bottom: 0.85rem; line-height: 1.4; font-weight: 600; }
     .research-item p { font-size: 0.9rem; color: #3a4a58; line-height: 1.75; margin-bottom: 1rem; }
-    .research-pubs { border-top: 1px solid rgba(26,111,163,0.1); padding-top: 0.85rem; }
+    .research-pubs { border-top: 1px solid rgba(26,111,163,0.1); padding-top: 0.85rem; margin-top: 0.25rem; }
     .research-pubs-label { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
     .research-pubs a { display: block; font-size: 0.84rem; color: var(--ocean); text-decoration: none; margin-bottom: 0.5rem; line-height: 1.55; }
     .research-pubs a:hover { text-decoration: underline; }
 
+    /* Two-column layout: figure left, content right */
+    .research-cols {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 1.75rem;
+      align-items: start;
+    }
+    .research-figure img {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid rgba(26,111,163,0.15);
+      display: block;
+    }
+    .research-figure figcaption {
+      font-size: 0.76rem;
+      color: var(--muted);
+      margin-top: 0.5rem;
+      text-align: center;
+      font-style: italic;
+      line-height: 1.45;
+    }
+    /* On small screens, stack vertically */
+    @media (max-width: 720px) {
+      .research-cols { grid-template-columns: 1fr; }
+    }
+
+    /* ── PUBLICATIONS ─────────────────────────────────── */
     .pub-list { display: flex; flex-direction: column; gap: 1.1rem; }
     .pub-item { background: var(--white); border: 1px solid rgba(26,111,163,0.1); border-radius: 12px; padding: 1.2rem 1.5rem; transition: border-color 0.2s; }
     .pub-item:hover { border-color: rgba(26,111,163,0.35); }
@@ -80,12 +108,14 @@
     .pub-authors .me { color: var(--ocean); font-weight: 500; }
     .pub-journal { font-size: 0.83rem; color: var(--accent); font-style: italic; }
 
+    /* ── AWARDS ───────────────────────────────────────── */
     .award-list { display: flex; flex-direction: column; gap: 1rem; }
     .award-item { display: flex; align-items: flex-start; gap: 1rem; padding: 1rem 1.25rem; background: var(--white); border-radius: 10px; border: 1px solid rgba(26,111,163,0.1); }
     .award-dot { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, #f5c842, var(--accent)); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; margin-top: 2px; }
     .award-name { font-weight: 500; color: var(--deep); font-size: 0.95rem; line-height: 1.4; }
     .award-body { font-size: 0.83rem; color: var(--muted); margin-top: 0.2rem; }
 
+    /* ── CONTACT ──────────────────────────────────────── */
     .contact-box { background: linear-gradient(135deg, var(--deep) 0%, var(--ocean) 100%); border-radius: 16px; padding: 2.5rem; color: var(--white); text-align: center; }
     .contact-box h2 { font-family: 'Lora', serif; font-size: 1.6rem; margin-bottom: 0.75rem; }
     .contact-box p { opacity: 0.8; margin-bottom: 1.75rem; font-size: 0.95rem; }
@@ -97,7 +127,7 @@
 
     @media (max-width: 600px) {
       .hero-inner { grid-template-columns: 1fr; text-align: center; }
-      .hero-avatar-initials { width: 100px; height: 100px; font-size: 1.8rem; margin: 0 auto; }
+      .hero-avatar-initials { width: 100px; height: 100px; margin: 0 auto; }
       .hero-links { justify-content: center; }
       .about-keywords { justify-content: center; }
     }
@@ -122,7 +152,7 @@
 <header class="hero">
   <div class="hero-inner">
     <div>
-      <span class="hero-tag">PhD Scholar · 5th Year </span>
+      <span class="hero-tag">PhD Scholar · 5th Year</span>
       <h1>Mahendra Singh</h1>
       <p class="hero-sub">
         Centre for Atmospheric and Oceanic Sciences (CAOS)<br>
@@ -134,14 +164,13 @@
         <a href="#publications" class="btn btn-secondary">Publications</a>
       </div>
     </div>
-    <!-- To add your photo: replace the div below with <img src="your-photo.jpg" alt="Mahendra Singh" class="hero-avatar-initials" style="object-fit:cover;"> -->
-    <!-- <div class="hero-avatar-initials" aria-label="Mahendra Singh">MS</div> -->
     <img src="Picture1.jpg" alt="Mahendra Singh" class="hero-avatar-initials" style="object-fit:cover;">
   </div>
 </header>
 
 <main>
 
+  <!-- ABOUT -->
   <section id="about">
     <h2 class="section-title">About Me</h2>
     <p class="section-sub">Atmospheric scientist studying monsoon systems and climate intervention</p>
@@ -167,6 +196,7 @@
     </div>
   </section>
 
+  <!-- EDUCATION -->
   <section id="education">
     <h2 class="section-title">Education</h2>
     <p class="section-sub">Academic journey across India's premier institutions</p>
@@ -176,7 +206,7 @@
         <div class="tl-year">2021 – Present</div>
         <div class="tl-degree">PhD, Atmospheric and Oceanic Sciences</div>
         <div class="tl-inst"><a href="https://caos.iisc.ac.in/" target="_blank">Centre for Atmospheric and Oceanic Sciences (CAOS)</a></div>
-        <div class="tl-detail">Indian Institute of Science (IISc), Bangalore </div>
+        <div class="tl-detail">Indian Institute of Science (IISc), Bangalore</div>
       </div>
 
       <div class="tl-item">
@@ -203,40 +233,52 @@
     </div>
   </section>
 
+  <!-- RESEARCH -->
   <section id="research">
     <h2 class="section-title">Research</h2>
     <p class="section-sub">Current projects on monsoon LPS and stratospheric geoengineering</p>
 
+    <!-- Research Item 1: Figure LEFT, Text + Publication RIGHT -->
     <div class="research-item">
       <h3>Response of Monsoon Low-Pressure Systems to UNIFORM Geoengineering</h3>
-      <p>
-        This work investigates how Low-Pressure Systems (LPS) during the Indian Summer Monsoon respond under the
-        UNIFORM geoengineering experiment, in which stratospheric sulfate aerosols are uniformly prescribed to
-        counteract warming from doubled atmospheric CO₂, using the fully coupled CESM2.1.3 climate model.
-        By comparing UNIFORM, doubled CO₂, and control simulations, I analyse changes in the frequency, intensity,
-        tracks, duration, and rainfall contribution of monsoon LPS. Results show that although aerosol intervention
-        substantially offsets large-scale warming, it also modifies land–sea thermal contrast, atmospheric circulation,
-        and moisture transport — key drivers of LPS formation — highlighting that geoengineering impacts extend
-        beyond global temperature recovery and can significantly influence regional rainfall and climate risks over South Asia.
-      </p>
-      <figure style="margin: 1rem 0 1.25rem;">
-        <img
-          src="TS_anomaly_global.png"
-          alt="Global surface temperature anomalies under UNIFORM geoengineering."
-          style="width:100%; border-radius:8px; border:1px solid rgba(26,111,163,0.15);"
-        />
-        <figcaption style="font-size:0.8rem; color:#5a6a7a; margin-top:0.5rem; text-align:center; font-style:italic;">
-          Fig. 1: Global surface temperature anomalies under UNIFORM geoengineering vs doubled CO₂ (CESM2.1.3)
-        </figcaption>
-      </figure>
-      <div class="research-pubs">
-        <div class="research-pubs-label">Related Publication</div>
-        <a href="https://ams.confex.com/ams/106ANNUAL/meetingapp.cgi/Paper/475141" target="_blank">
-          Singh, M., Bala, G., and Seshadri, A. K. (2026). Response of the Characteristics of Monsoon Low-Pressure Systems to Stratospheric Aerosol Geoengineering during the Indian Summer Monsoon Season. 106th AMS Annual Meeting, American Meteorological Society.
-        </a>
+
+      <div class="research-cols">
+
+        <!-- LEFT: Figure -->
+        <figure class="research-figure">
+          <img
+            src="TS_anomaly_global.png"
+            alt="Global surface temperature anomalies under UNIFORM geoengineering"
+          />
+          <figcaption>
+            Fig. 1: Global surface temperature anomalies under UNIFORM geoengineering vs doubled CO₂ (CESM2.1.3)
+          </figcaption>
+        </figure>
+
+        <!-- RIGHT: Text + Publication -->
+        <div>
+          <p>
+            This work investigates how Low-Pressure Systems (LPS) during the Indian Summer Monsoon respond under the
+            UNIFORM geoengineering experiment, in which stratospheric sulfate aerosols are uniformly prescribed to
+            counteract warming from doubled atmospheric CO₂, using the fully coupled CESM2.1.3 climate model.
+            By comparing UNIFORM, doubled CO₂, and control simulations, I analyse changes in the frequency, intensity,
+            tracks, duration, and rainfall contribution of monsoon LPS. Results show that although aerosol intervention
+            substantially offsets large-scale warming, it also modifies land–sea thermal contrast, atmospheric circulation,
+            and moisture transport — key drivers of LPS formation — highlighting that geoengineering impacts extend
+            beyond global temperature recovery and can significantly influence regional rainfall and climate risks over South Asia.
+          </p>
+          <div class="research-pubs">
+            <div class="research-pubs-label">Related Publication</div>
+            <a href="https://ams.confex.com/ams/106ANNUAL/meetingapp.cgi/Paper/475141" target="_blank">
+              Singh, M., Bala, G., and Seshadri, A. K. (2026). Response of the Characteristics of Monsoon Low-Pressure Systems to Stratospheric Aerosol Geoengineering during the Indian Summer Monsoon Season. 106th AMS Annual Meeting, American Meteorological Society.
+            </a>
+          </div>
+        </div>
+
       </div>
     </div>
 
+    <!-- Research Item 2: full width (no figure yet) -->
     <div class="research-item">
       <h3>Accounting for the Bias in the Median Track of Indian Summer Monsoon Low-Pressure Systems in an Earth System Model</h3>
       <p>
@@ -262,6 +304,7 @@
 
   </section>
 
+  <!-- PUBLICATIONS -->
   <section id="publications">
     <h2 class="section-title">Publications</h2>
     <p class="section-sub">Peer-reviewed articles and conference papers</p>
@@ -297,6 +340,7 @@
     </div>
   </section>
 
+  <!-- AWARDS -->
   <section id="awards">
     <h2 class="section-title">Awards &amp; Fellowships</h2>
     <p class="section-sub">Recognitions received throughout my academic career</p>
@@ -345,6 +389,7 @@
     </div>
   </section>
 
+  <!-- CONTACT -->
   <section id="contact">
     <div class="contact-box">
       <h2>Get in Touch</h2>
