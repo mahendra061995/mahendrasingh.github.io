@@ -7,464 +7,97 @@
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --sky: #d6eaf5;
-      --ocean: #1a6fa3;
-      --deep: #0d3d5c;
-      --earth: #5c4a2a;
-      --sand: #f5f0e8;
-      --mist: #eef4f9;
-      --text: #1a1a2e;
-      --muted: #5a6a7a;
-      --accent: #c96a2e;
-      --white: #ffffff;
+      --sky: #d6eaf5; --ocean: #1a6fa3; --deep: #0d3d5c;
+      --sand: #f5f0e8; --mist: #eef4f9; --text: #1a1a2e;
+      --muted: #5a6a7a; --accent: #c96a2e; --white: #ffffff;
     }
-
     html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--sand); color: var(--text); font-size: 16px; line-height: 1.7; }
 
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--sand);
-      color: var(--text);
-      font-size: 16px;
-      line-height: 1.7;
-    }
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(245,240,232,0.93); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(26,111,163,0.15); padding: 0 2rem; }
+    .nav-inner { max-width: 960px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+    .nav-logo { font-family: 'Lora', serif; font-size: 1.05rem; color: var(--deep); text-decoration: none; font-weight: 600; white-space: nowrap; }
+    .nav-links { display: flex; gap: 0.15rem; list-style: none; flex-wrap: wrap; justify-content: flex-end; }
+    .nav-links a { text-decoration: none; color: var(--muted); font-size: 0.82rem; font-weight: 500; padding: 0.3rem 0.65rem; border-radius: 20px; transition: background 0.2s, color 0.2s; }
+    .nav-links a:hover { background: var(--sky); color: var(--deep); }
 
-    /* ── NAV ─────────────────────────────────────────── */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(245, 240, 232, 0.92);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid rgba(26,111,163,0.15);
-      padding: 0 2rem;
-    }
-    .nav-inner {
-      max-width: 900px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 56px;
-    }
-    .nav-logo {
-      font-family: 'Lora', serif;
-      font-size: 1.1rem;
-      color: var(--deep);
-      text-decoration: none;
-      font-weight: 600;
-    }
-    .nav-links {
-      display: flex;
-      gap: 0.25rem;
-      list-style: none;
-      flex-wrap: wrap;
-    }
-    .nav-links a {
-      text-decoration: none;
-      color: var(--muted);
-      font-size: 0.85rem;
-      font-weight: 500;
-      padding: 0.3rem 0.7rem;
-      border-radius: 20px;
-      transition: background 0.2s, color 0.2s;
-      letter-spacing: 0.02em;
-    }
-    .nav-links a:hover {
-      background: var(--sky);
-      color: var(--deep);
-    }
-
-    /* ── HERO ────────────────────────────────────────── */
-    .hero {
-      background: linear-gradient(160deg, var(--mist) 0%, var(--sky) 60%, #b8d9f0 100%);
-      padding: 5rem 2rem 4rem;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero::before {
-      content: '';
-      position: absolute;
-      bottom: -60px;
-      left: -80px;
-      width: 400px;
-      height: 400px;
-      border-radius: 50%;
-      background: rgba(26,111,163,0.06);
-    }
-    .hero::after {
-      content: '';
-      position: absolute;
-      top: -40px;
-      right: -60px;
-      width: 300px;
-      height: 300px;
-      border-radius: 50%;
-      background: rgba(201,106,46,0.06);
-    }
-    .hero-inner {
-      max-width: 900px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 3rem;
-      align-items: center;
-      position: relative;
-      z-index: 1;
-    }
-    .hero-tag {
-      display: inline-block;
-      background: var(--ocean);
-      color: var(--white);
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 0.3rem 0.9rem;
-      border-radius: 20px;
-      margin-bottom: 1rem;
-    }
-    .hero h1 {
-      font-family: 'Lora', serif;
-      font-size: clamp(2rem, 5vw, 3rem);
-      color: var(--deep);
-      line-height: 1.2;
-      margin-bottom: 0.75rem;
-    }
-    .hero-sub {
-      font-size: 1.05rem;
-      color: var(--muted);
-      margin-bottom: 1.5rem;
-      line-height: 1.6;
-    }
-    .hero-sub strong {
-      color: var(--ocean);
-      font-weight: 500;
-    }
-    .hero-links {
-      display: flex;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-    }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      text-decoration: none;
-      padding: 0.5rem 1.2rem;
-      border-radius: 25px;
-      font-size: 0.875rem;
-      font-weight: 500;
-      transition: transform 0.15s, box-shadow 0.15s;
-    }
+    .hero { background: linear-gradient(160deg, var(--mist) 0%, var(--sky) 60%, #b8d9f0 100%); padding: 5rem 2rem 4rem; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; bottom: -60px; left: -80px; width: 400px; height: 400px; border-radius: 50%; background: rgba(26,111,163,0.06); }
+    .hero::after { content: ''; position: absolute; top: -40px; right: -60px; width: 300px; height: 300px; border-radius: 50%; background: rgba(201,106,46,0.06); }
+    .hero-inner { max-width: 960px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: center; position: relative; z-index: 1; }
+    .hero-tag { display: inline-block; background: var(--ocean); color: var(--white); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.3rem 0.9rem; border-radius: 20px; margin-bottom: 1rem; }
+    .hero h1 { font-family: 'Lora', serif; font-size: clamp(2rem, 5vw, 3rem); color: var(--deep); line-height: 1.2; margin-bottom: 0.75rem; }
+    .hero-sub { font-size: 1rem; color: var(--muted); margin-bottom: 1.5rem; line-height: 1.65; }
+    .hero-sub strong { color: var(--ocean); font-weight: 500; }
+    .hero-links { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; gap: 0.4rem; text-decoration: none; padding: 0.5rem 1.2rem; border-radius: 25px; font-size: 0.875rem; font-weight: 500; transition: transform 0.15s, box-shadow 0.15s; }
     .btn:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
     .btn-primary { background: var(--ocean); color: var(--white); }
     .btn-secondary { background: var(--white); color: var(--deep); border: 1px solid rgba(26,111,163,0.3); }
-    .hero-avatar {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      border: 4px solid var(--white);
-      box-shadow: 0 8px 30px rgba(26,111,163,0.2);
-      object-fit: cover;
-      background: var(--sky);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Lora', serif;
-      font-size: 2.5rem;
-      color: var(--ocean);
-      font-weight: 600;
-      flex-shrink: 0;
-    }
+    .hero-avatar-initials { width: 150px; height: 150px; border-radius: 50%; border: 4px solid var(--white); box-shadow: 0 8px 30px rgba(26,111,163,0.2); background: var(--ocean); display: flex; align-items: center; justify-content: center; font-family: 'Lora', serif; font-size: 2.5rem; color: var(--white); font-weight: 600; flex-shrink: 0; }
 
-    /* ── MAIN LAYOUT ─────────────────────────────────── */
-    main {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 3rem 2rem 5rem;
-    }
-
+    main { max-width: 960px; margin: 0 auto; padding: 3rem 2rem 5rem; }
     section { margin-bottom: 4rem; }
+    .section-title { font-family: 'Lora', serif; font-size: 1.5rem; color: var(--deep); margin-bottom: 0.35rem; display: flex; align-items: center; gap: 0.6rem; }
+    .section-title::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, rgba(26,111,163,0.3), transparent); }
+    .section-sub { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.75rem; }
 
-    .section-title {
-      font-family: 'Lora', serif;
-      font-size: 1.5rem;
-      color: var(--deep);
-      margin-bottom: 0.35rem;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-    .section-title::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, rgba(26,111,163,0.3), transparent);
-    }
-    .section-sub {
-      color: var(--muted);
-      font-size: 0.9rem;
-      margin-bottom: 1.75rem;
-    }
-
-    /* ── ABOUT ───────────────────────────────────────── */
-    .about-text {
-      font-size: 1.05rem;
-      color: #2a3540;
-      line-height: 1.85;
-    }
+    .about-text { font-size: 1.02rem; color: #2a3540; line-height: 1.85; }
     .about-text p { margin-bottom: 1rem; }
-    .about-keywords {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 1.25rem;
-    }
-    .kw {
-      background: var(--mist);
-      border: 1px solid rgba(26,111,163,0.2);
-      color: var(--ocean);
-      font-size: 0.8rem;
-      padding: 0.3rem 0.8rem;
-      border-radius: 15px;
-      font-weight: 500;
-    }
+    .about-keywords { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.25rem; }
+    .kw { background: var(--mist); border: 1px solid rgba(26,111,163,0.2); color: var(--ocean); font-size: 0.8rem; padding: 0.3rem 0.8rem; border-radius: 15px; font-weight: 500; }
 
-    /* ── EDUCATION ───────────────────────────────────── */
     .timeline { position: relative; padding-left: 1.75rem; }
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 0.45rem;
-      top: 6px;
-      bottom: 6px;
-      width: 2px;
-      background: linear-gradient(to bottom, var(--ocean), var(--sky));
-      border-radius: 2px;
-    }
-    .tl-item {
-      position: relative;
-      margin-bottom: 2rem;
-    }
-    .tl-item::before {
-      content: '';
-      position: absolute;
-      left: -1.45rem;
-      top: 6px;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--ocean);
-      border: 2px solid var(--sand);
-    }
-    .tl-year {
-      font-size: 0.78rem;
-      color: var(--accent);
-      font-weight: 500;
-      letter-spacing: 0.05em;
-      margin-bottom: 0.2rem;
-      text-transform: uppercase;
-    }
-    .tl-degree {
-      font-family: 'Lora', serif;
-      font-size: 1.05rem;
-      color: var(--deep);
-      margin-bottom: 0.15rem;
-      font-weight: 600;
-    }
-    .tl-inst {
-      color: var(--ocean);
-      font-size: 0.9rem;
-      font-weight: 500;
-    }
-    .tl-detail {
-      color: var(--muted);
-      font-size: 0.875rem;
-      margin-top: 0.15rem;
-    }
+    .timeline::before { content: ''; position: absolute; left: 0.45rem; top: 6px; bottom: 6px; width: 2px; background: linear-gradient(to bottom, var(--ocean), var(--sky)); border-radius: 2px; }
+    .tl-item { position: relative; margin-bottom: 2rem; }
+    .tl-item::before { content: ''; position: absolute; left: -1.45rem; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: var(--ocean); border: 2px solid var(--sand); }
+    .tl-year { font-size: 0.78rem; color: var(--accent); font-weight: 500; letter-spacing: 0.05em; margin-bottom: 0.2rem; text-transform: uppercase; }
+    .tl-degree { font-family: 'Lora', serif; font-size: 1.05rem; color: var(--deep); margin-bottom: 0.15rem; font-weight: 600; }
+    .tl-inst { color: var(--ocean); font-size: 0.9rem; font-weight: 500; }
+    .tl-inst a { color: inherit; text-decoration: none; }
+    .tl-inst a:hover { text-decoration: underline; }
+    .tl-detail { color: var(--muted); font-size: 0.875rem; margin-top: 0.15rem; }
 
-    /* ── RESEARCH ────────────────────────────────────── */
-    .research-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.25rem;
-    }
-    .research-card {
-      background: var(--white);
-      border: 1px solid rgba(26,111,163,0.12);
-      border-radius: 14px;
-      padding: 1.4rem;
-      transition: transform 0.2s, box-shadow 0.2s;
-      position: relative;
-      overflow: hidden;
-    }
-    .research-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--ocean), var(--sky));
-    }
-    .research-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(26,111,163,0.12);
-    }
-    .research-icon {
-      font-size: 1.6rem;
-      margin-bottom: 0.75rem;
-      display: block;
-    }
-    .research-card h3 {
-      font-family: 'Lora', serif;
-      font-size: 1rem;
-      color: var(--deep);
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-    }
-    .research-card p {
-      font-size: 0.875rem;
-      color: var(--muted);
-      line-height: 1.6;
-    }
+    .research-item { background: var(--white); border: 1px solid rgba(26,111,163,0.12); border-radius: 14px; padding: 1.75rem; margin-bottom: 1.5rem; position: relative; overflow: hidden; }
+    .research-item::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--ocean), var(--sky)); }
+    .research-item h3 { font-family: 'Lora', serif; font-size: 1.05rem; color: var(--deep); margin-bottom: 0.85rem; line-height: 1.4; font-weight: 600; }
+    .research-item p { font-size: 0.9rem; color: #3a4a58; line-height: 1.75; margin-bottom: 1rem; }
+    .research-pubs { border-top: 1px solid rgba(26,111,163,0.1); padding-top: 0.85rem; }
+    .research-pubs-label { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
+    .research-pubs a { display: block; font-size: 0.84rem; color: var(--ocean); text-decoration: none; margin-bottom: 0.5rem; line-height: 1.55; }
+    .research-pubs a:hover { text-decoration: underline; }
 
-    /* ── PUBLICATIONS ────────────────────────────────── */
-    .pub-list { display: flex; flex-direction: column; gap: 1.25rem; }
-    .pub-item {
-      background: var(--white);
-      border: 1px solid rgba(26,111,163,0.1);
-      border-radius: 12px;
-      padding: 1.25rem 1.5rem;
-      transition: border-color 0.2s;
-    }
+    .pub-list { display: flex; flex-direction: column; gap: 1.1rem; }
+    .pub-item { background: var(--white); border: 1px solid rgba(26,111,163,0.1); border-radius: 12px; padding: 1.2rem 1.5rem; transition: border-color 0.2s; }
     .pub-item:hover { border-color: rgba(26,111,163,0.35); }
-    .pub-title {
-      font-family: 'Lora', serif;
-      font-size: 0.975rem;
-      color: var(--deep);
-      font-weight: 600;
-      line-height: 1.4;
-      margin-bottom: 0.4rem;
-    }
-    .pub-authors {
-      font-size: 0.83rem;
-      color: var(--muted);
-      margin-bottom: 0.3rem;
-    }
+    .pub-badge-type { display: inline-block; font-size: 0.7rem; font-weight: 500; padding: 0.15rem 0.6rem; border-radius: 10px; margin-bottom: 0.5rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .badge-journal { background: #e6f1fb; color: #1a6fa3; }
+    .badge-conf { background: #eaf3de; color: #3b6d11; }
+    .pub-title { font-family: 'Lora', serif; font-size: 0.96rem; color: var(--deep); font-weight: 600; line-height: 1.45; margin-bottom: 0.4rem; text-decoration: none; display: block; }
+    .pub-title:hover { color: var(--ocean); }
+    .pub-authors { font-size: 0.83rem; color: var(--muted); margin-bottom: 0.3rem; }
     .pub-authors .me { color: var(--ocean); font-weight: 500; }
-    .pub-journal {
-      font-size: 0.83rem;
-      color: var(--accent);
-      font-style: italic;
-    }
-    .pub-badge {
-      display: inline-block;
-      background: var(--mist);
-      color: var(--ocean);
-      font-size: 0.72rem;
-      padding: 0.15rem 0.6rem;
-      border-radius: 10px;
-      font-weight: 500;
-      margin-left: 0.5rem;
-      vertical-align: middle;
-    }
-    .pub-note {
-      font-size: 0.82rem;
-      color: var(--muted);
-      font-style: italic;
-      margin-top: 0.4rem;
-    }
+    .pub-journal { font-size: 0.83rem; color: var(--accent); font-style: italic; }
 
-    /* ── AWARDS ──────────────────────────────────────── */
     .award-list { display: flex; flex-direction: column; gap: 1rem; }
-    .award-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      padding: 1rem 1.25rem;
-      background: var(--white);
-      border-radius: 10px;
-      border: 1px solid rgba(26,111,163,0.1);
-    }
-    .award-dot {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #f5c842, var(--accent));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-    .award-name {
-      font-weight: 500;
-      color: var(--deep);
-      font-size: 0.95rem;
-      line-height: 1.4;
-    }
-    .award-body {
-      font-size: 0.83rem;
-      color: var(--muted);
-      margin-top: 0.2rem;
-    }
+    .award-item { display: flex; align-items: flex-start; gap: 1rem; padding: 1rem 1.25rem; background: var(--white); border-radius: 10px; border: 1px solid rgba(26,111,163,0.1); }
+    .award-dot { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, #f5c842, var(--accent)); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; margin-top: 2px; }
+    .award-name { font-weight: 500; color: var(--deep); font-size: 0.95rem; line-height: 1.4; }
+    .award-body { font-size: 0.83rem; color: var(--muted); margin-top: 0.2rem; }
 
-    /* ── CONTACT ─────────────────────────────────────── */
-    .contact-box {
-      background: linear-gradient(135deg, var(--deep) 0%, var(--ocean) 100%);
-      border-radius: 16px;
-      padding: 2.5rem;
-      color: var(--white);
-      text-align: center;
-    }
-    .contact-box h2 {
-      font-family: 'Lora', serif;
-      font-size: 1.6rem;
-      margin-bottom: 0.75rem;
-    }
-    .contact-box p {
-      opacity: 0.8;
-      margin-bottom: 1.75rem;
-      font-size: 0.95rem;
-    }
-    .contact-links {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .contact-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(255,255,255,0.15);
-      border: 1px solid rgba(255,255,255,0.3);
-      color: var(--white);
-      text-decoration: none;
-      padding: 0.6rem 1.4rem;
-      border-radius: 25px;
-      font-size: 0.875rem;
-      font-weight: 500;
-      transition: background 0.2s;
-    }
+    .contact-box { background: linear-gradient(135deg, var(--deep) 0%, var(--ocean) 100%); border-radius: 16px; padding: 2.5rem; color: var(--white); text-align: center; }
+    .contact-box h2 { font-family: 'Lora', serif; font-size: 1.6rem; margin-bottom: 0.75rem; }
+    .contact-box p { opacity: 0.8; margin-bottom: 1.75rem; font-size: 0.95rem; }
+    .contact-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .contact-btn { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: var(--white); text-decoration: none; padding: 0.6rem 1.4rem; border-radius: 25px; font-size: 0.875rem; font-weight: 500; transition: background 0.2s; }
     .contact-btn:hover { background: rgba(255,255,255,0.25); }
 
-    /* ── FOOTER ──────────────────────────────────────── */
-    footer {
-      text-align: center;
-      padding: 2rem;
-      font-size: 0.82rem;
-      color: var(--muted);
-      border-top: 1px solid rgba(26,111,163,0.1);
-    }
+    footer { text-align: center; padding: 2rem; font-size: 0.82rem; color: var(--muted); border-top: 1px solid rgba(26,111,163,0.1); }
 
     @media (max-width: 600px) {
-      .hero-inner { grid-template-columns: 1fr; }
-      .hero-avatar { width: 100px; height: 100px; font-size: 1.8rem; margin: 0 auto; }
-      .hero-inner { text-align: center; }
+      .hero-inner { grid-template-columns: 1fr; text-align: center; }
+      .hero-avatar-initials { width: 100px; height: 100px; font-size: 1.8rem; margin: 0 auto; }
       .hero-links { justify-content: center; }
       .about-keywords { justify-content: center; }
     }
@@ -472,7 +105,6 @@
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <div class="nav-inner">
     <a href="#" class="nav-logo">Mahendra Singh</a>
@@ -487,185 +119,226 @@
   </div>
 </nav>
 
-<!-- HERO -->
 <header class="hero">
   <div class="hero-inner">
     <div>
-      <span class="hero-tag">PhD Scholar · 3rd Year</span>
+      <span class="hero-tag">PhD Scholar · 5th Year · PMRF Fellow</span>
       <h1>Mahendra Singh</h1>
       <p class="hero-sub">
-        Centre for Atmospheric and Oceanic Sciences<br>
+        Centre for Atmospheric and Oceanic Sciences (CAOS)<br>
         <strong>Indian Institute of Science, Bangalore</strong>
       </p>
       <div class="hero-links">
-        <a href="mailto:mahendras@iisc.ac.in" class="btn btn-primary">✉ Email Me</a>
+        <a href="mailto:mahendras@iisc.ac.in" class="btn btn-primary">✉ mahendras@iisc.ac.in</a>
         <a href="https://www.linkedin.com/in/mahendra-singh-50b31a144/" target="_blank" class="btn btn-secondary">LinkedIn</a>
         <a href="#publications" class="btn btn-secondary">Publications</a>
       </div>
     </div>
-    <div class="hero-avatar" aria-label="Mahendra Singh">MS</div>
+    <!-- To add your photo: replace the div below with <img src="your-photo.jpg" alt="Mahendra Singh" class="hero-avatar-initials" style="object-fit:cover;"> -->
+    <div class="hero-avatar-initials" aria-label="Mahendra Singh">MS</div>
   </div>
 </header>
 
-<!-- MAIN -->
 <main>
 
-  <!-- ABOUT -->
   <section id="about">
     <h2 class="section-title">About Me</h2>
-    <p class="section-sub">Atmospheric scientist in the making</p>
+    <p class="section-sub">Atmospheric scientist studying monsoon systems and climate intervention</p>
     <div class="about-text">
       <p>
-        I am a third-year PhD research scholar at the <strong>Centre for Atmospheric and Oceanic Sciences (CAOS)</strong>, 
-        Indian Institute of Science, Bangalore. My research focuses on understanding the complex dynamics of 
-        Earth's atmosphere and oceans, particularly over the Indian subcontinent.
+        I am a fifth-year PhD research scholar at the <strong>Centre for Atmospheric and Oceanic Sciences (CAOS)</strong>,
+        Indian Institute of Science, Bangalore, supported by the Prime Minister's Research Fellowship (PMRF).
       </p>
       <p>
-        I am passionate about leveraging observational data, reanalysis products, and numerical simulations 
-        to unravel the mechanisms governing monsoon variability, extreme weather events, and climate-scale phenomena.
+        My research focuses on Indian Summer Monsoon Low-Pressure Systems (LPS) — their climatology, model biases,
+        and how they respond to stratospheric aerosol geoengineering. I use the CESM2.1.3 fully coupled Earth system
+        model alongside ERA5 reanalysis to investigate monsoon dynamics and regional climate risks over South Asia.
       </p>
     </div>
     <div class="about-keywords">
-      <span class="kw">Indian Monsoon</span>
-      <span class="kw">Atmospheric Dynamics</span>
-      <span class="kw">Ocean–Atmosphere Interaction</span>
-      <span class="kw">Climate Variability</span>
-      <span class="kw">Numerical Modelling</span>
-      <span class="kw">Remote Sensing</span>
+      <span class="kw">Indian Summer Monsoon</span>
+      <span class="kw">Low-Pressure Systems (LPS)</span>
+      <span class="kw">Stratospheric Aerosol Geoengineering</span>
+      <span class="kw">CESM2 Earth System Model</span>
+      <span class="kw">Monsoon Dynamics</span>
+      <span class="kw">Climate Model Biases</span>
+      <span class="kw">CMIP Models</span>
+      <span class="kw">South Asia Climate</span>
     </div>
   </section>
 
-  <!-- EDUCATION -->
   <section id="education">
     <h2 class="section-title">Education</h2>
-    <p class="section-sub">Academic journey</p>
+    <p class="section-sub">Academic journey across India's premier institutions</p>
     <div class="timeline">
+
       <div class="tl-item">
-        <div class="tl-year">2022 – Present</div>
+        <div class="tl-year">2021 – Present</div>
         <div class="tl-degree">PhD, Atmospheric and Oceanic Sciences</div>
-        <div class="tl-inst">Indian Institute of Science, Bangalore</div>
-        <div class="tl-detail">Centre for Atmospheric and Oceanic Sciences (CAOS) · PMRF Fellow</div>
+        <div class="tl-inst"><a href="https://caos.iisc.ac.in/" target="_blank">Centre for Atmospheric and Oceanic Sciences (CAOS)</a></div>
+        <div class="tl-detail">Indian Institute of Science (IISc), Bangalore · PMRF Fellow</div>
       </div>
+
       <div class="tl-item">
-        <div class="tl-year">2020 – 2022</div>
-        <div class="tl-degree">M.Sc. / M.Tech. (or equivalent)</div>
-        <div class="tl-inst">Your Previous University</div>
-        <div class="tl-detail">Please update with your actual degree details</div>
+        <div class="tl-year">2019 – 2021</div>
+        <div class="tl-degree">M.Tech., Earth System Science and Technology</div>
+        <div class="tl-inst"><a href="http://www.iitkgp.ac.in/" target="_blank">Centre for Ocean, River, Atmosphere, and Land Sciences (CORAL)</a></div>
+        <div class="tl-detail">Indian Institute of Technology Kharagpur (IIT KGP)</div>
       </div>
+
       <div class="tl-item">
-        <div class="tl-year">Before 2020</div>
-        <div class="tl-degree">Bachelor's Degree</div>
-        <div class="tl-inst">Your Undergraduate Institution</div>
-        <div class="tl-detail">Please update with your actual degree details</div>
+        <div class="tl-year">2015 – 2017</div>
+        <div class="tl-degree">M.Sc., Physics</div>
+        <div class="tl-inst"><a href="https://www.iitk.ac.in/phy/" target="_blank">Department of Physics</a></div>
+        <div class="tl-detail">Indian Institute of Technology Kanpur (IIT Kanpur)</div>
       </div>
+
+      <div class="tl-item">
+        <div class="tl-year">2012 – 2015</div>
+        <div class="tl-degree">B.Sc., Physics, Mathematics and Chemistry</div>
+        <div class="tl-inst"><a href="http://csjmu.ac.in/" target="_blank">Chhatrapati Shahu Ji Maharaj University</a></div>
+        <div class="tl-detail">Kanpur</div>
+      </div>
+
     </div>
   </section>
 
-  <!-- RESEARCH -->
   <section id="research">
     <h2 class="section-title">Research</h2>
-    <p class="section-sub">Current interests and themes</p>
-    <div class="research-grid">
-      <div class="research-card">
-        <span class="research-icon">🌧</span>
-        <h3>Monsoon Variability</h3>
-        <p>Investigating intra-seasonal, inter-annual and decadal variability in the Indian Summer Monsoon and its teleconnections.</p>
-      </div>
-      <div class="research-card">
-        <span class="research-icon">🌊</span>
-        <h3>Ocean–Atmosphere Coupling</h3>
-        <p>Understanding how sea surface temperature anomalies in the Indian Ocean influence large-scale circulation patterns.</p>
-      </div>
-      <div class="research-card">
-        <span class="research-icon">🌀</span>
-        <h3>Extreme Weather Events</h3>
-        <p>Studying the mechanisms, predictability, and impacts of extreme precipitation and heat events over South Asia.</p>
-      </div>
-      <div class="research-card">
-        <span class="research-icon">🛰</span>
-        <h3>Observational Analysis</h3>
-        <p>Using satellite data, reanalysis products (ERA5, MERRA-2), and station observations for diagnostic studies.</p>
+    <p class="section-sub">Current projects on monsoon LPS and stratospheric geoengineering</p>
+
+    <div class="research-item">
+      <h3>Response of Monsoon Low-Pressure Systems to UNIFORM Geoengineering</h3>
+      <p>
+        This work investigates how Low-Pressure Systems (LPS) during the Indian Summer Monsoon respond under the
+        UNIFORM geoengineering experiment, in which stratospheric sulfate aerosols are uniformly prescribed to
+        counteract warming from doubled atmospheric CO₂, using the fully coupled CESM2.1.3 climate model.
+        By comparing UNIFORM, doubled CO₂, and control simulations, I analyse changes in the frequency, intensity,
+        tracks, duration, and rainfall contribution of monsoon LPS. Results show that although aerosol intervention
+        substantially offsets large-scale warming, it also modifies land–sea thermal contrast, atmospheric circulation,
+        and moisture transport — key drivers of LPS formation — highlighting that geoengineering impacts extend
+        beyond global temperature recovery and can significantly influence regional rainfall and climate risks over South Asia.
+      </p>
+      <div class="research-pubs">
+        <div class="research-pubs-label">Related Publication</div>
+        <a href="https://ams.confex.com/ams/106ANNUAL/meetingapp.cgi/Paper/475141" target="_blank">
+          Singh, M., Bala, G., and Seshadri, A. K. (2026). Response of the Characteristics of Monsoon Low-Pressure Systems to Stratospheric Aerosol Geoengineering during the Indian Summer Monsoon Season. 106th AMS Annual Meeting, American Meteorological Society.
+        </a>
       </div>
     </div>
+
+    <div class="research-item">
+      <h3>Accounting for the Bias in the Median Track of Indian Summer Monsoon Low-Pressure Systems in an Earth System Model</h3>
+      <p>
+        Indian Summer Monsoon LPS are among the most important rain-bearing weather systems over the subcontinent,
+        contributing a major share of seasonal rainfall over central, eastern, and northern India. Using CESM2.1.3
+        and ERA5 reanalysis, this study shows that the model produces a systematic southward shift in LPS genesis
+        and tracks, linked to a southward-displaced monsoon low-level jet and stronger dry-air intrusion from West
+        Asia and the Arabian region. These circulation errors suppress LPS development into northern India, causing
+        reduced rainfall over the monsoon core zone and excessive rainfall farther south. Similar biases are found
+        across CMIP models, indicating a long-standing challenge in monsoon simulation that must be addressed for
+        better seasonal forecasts and future climate projections.
+      </p>
+      <div class="research-pubs">
+        <div class="research-pubs-label">Related Publications</div>
+        <a href="https://doi.org/10.1175/JCLI-D-25-0510.1" target="_blank">
+          Singh, M., Bala, G., &amp; Seshadri, A. K. (2026). Accounting for the bias in the median track of Indian Summer monsoon low-pressure systems in an Earth system model. Journal of Climate. doi:10.1175/JCLI-D-25-0510.1
+        </a>
+        <a href="https://doi.org/10.5194/egusphere-egu25-5990" target="_blank">
+          Singh, M., Bala, G., &amp; Seshadri, A. K. (2025). Biases in model simulations of Indian Summer monsoon low-pressure systems. EGU General Assembly, Vienna, Austria.
+        </a>
+      </div>
+    </div>
+
   </section>
 
-  <!-- PUBLICATIONS -->
   <section id="publications">
     <h2 class="section-title">Publications</h2>
-    <p class="section-sub">Peer-reviewed articles and preprints</p>
+    <p class="section-sub">Peer-reviewed articles and conference papers</p>
     <div class="pub-list">
 
       <div class="pub-item">
-        <div class="pub-title">
-          Your Most Recent Publication Title Goes Here
-          <span class="pub-badge">2024</span>
-        </div>
-        <div class="pub-authors">
-          <span class="me">Mahendra Singh</span>, Co-Author Name, Co-Author Name
-        </div>
-        <div class="pub-journal">Journal of Geophysical Research: Atmospheres, 2024</div>
-        <div class="pub-note">Please update this section with your actual publications and DOI links.</div>
+        <span class="pub-badge-type badge-journal">Journal Article</span>
+        <a class="pub-title" href="https://doi.org/10.1175/JCLI-D-25-0510.1" target="_blank">
+          Accounting for the bias in the median track of Indian Summer monsoon low-pressure systems in an Earth system model
+        </a>
+        <div class="pub-authors"><span class="me">Singh, M.</span>, Bala, G., &amp; Seshadri, A. K.</div>
+        <div class="pub-journal">Journal of Climate, 2026 · doi:10.1175/JCLI-D-25-0510.1</div>
       </div>
 
       <div class="pub-item">
-        <div class="pub-title">
-          Another Publication Title Goes Here
-          <span class="pub-badge">2023</span>
-        </div>
-        <div class="pub-authors">
-          Co-Author Name, <span class="me">Mahendra Singh</span>, Co-Author Name
-        </div>
-        <div class="pub-journal">Climate Dynamics, 2023</div>
+        <span class="pub-badge-type badge-conf">Conference Paper</span>
+        <a class="pub-title" href="https://ams.confex.com/ams/106ANNUAL/meetingapp.cgi/Paper/475141" target="_blank">
+          Response of the Characteristics of Monsoon Low-Pressure Systems to Stratospheric Aerosol Geoengineering during the Indian Summer Monsoon Season
+        </a>
+        <div class="pub-authors"><span class="me">Singh, M.</span>, Bala, G., &amp; Seshadri, A. K.</div>
+        <div class="pub-journal">106th AMS Annual Meeting, American Meteorological Society, 2026</div>
       </div>
 
       <div class="pub-item">
-        <div class="pub-title">
-          Earlier Work or Conference Paper Title
-          <span class="pub-badge">2022</span>
-        </div>
-        <div class="pub-authors">
-          <span class="me">Mahendra Singh</span>, Co-Author Name
-        </div>
-        <div class="pub-journal">Geophysical Research Letters, 2022</div>
+        <span class="pub-badge-type badge-conf">Conference Abstract</span>
+        <a class="pub-title" href="https://doi.org/10.5194/egusphere-egu25-5990" target="_blank">
+          Biases in model simulations of Indian Summer monsoon low-pressure systems
+        </a>
+        <div class="pub-authors"><span class="me">Singh, M.</span>, Bala, G., &amp; Seshadri, A. K.</div>
+        <div class="pub-journal">EGU General Assembly Conference Abstracts, Vienna, Austria, 2025</div>
       </div>
 
     </div>
   </section>
 
-  <!-- AWARDS -->
   <section id="awards">
-    <h2 class="section-title">Awards & Fellowships</h2>
-    <p class="section-sub">Recognitions and achievements</p>
+    <h2 class="section-title">Awards &amp; Fellowships</h2>
+    <p class="section-sub">Recognitions received throughout my academic career</p>
     <div class="award-list">
+
       <div class="award-item">
         <div class="award-dot">🏆</div>
         <div>
           <div class="award-name">Prime Minister's Research Fellowship (PMRF)</div>
-          <div class="award-body">Highly competitive national fellowship for PhD scholars — Government of India</div>
+          <div class="award-body">August 2022 – Present · Special research fellowship for doctoral students at institutes of national importance, Government of India</div>
         </div>
       </div>
+
       <div class="award-item">
         <div class="award-dot">🎖</div>
         <div>
-          <div class="award-name">Add Your Other Award Here</div>
-          <div class="award-body">Brief description of the award and awarding body</div>
+          <div class="award-name">Grantham Fellowship</div>
+          <div class="award-body">January 2022 – December 2022 · Awarded for Academic Excellence</div>
         </div>
       </div>
+
       <div class="award-item">
-        <div class="award-dot">📜</div>
+        <div class="award-dot">🔬</div>
         <div>
-          <div class="award-name">Add Another Award or Achievement</div>
-          <div class="award-body">Brief description</div>
+          <div class="award-name">CSIR National Eligibility Test – Junior Research Fellow (NET-JRF), 2017</div>
+          <div class="award-body">Physics · Conducted by the Council of Scientific and Industrial Research (CSIR)</div>
         </div>
       </div>
+
+      <div class="award-item">
+        <div class="award-dot">📐</div>
+        <div>
+          <div class="award-name">Graduate Aptitude Test in Engineering (GATE), 2019</div>
+          <div class="award-body">Physics · AIR-142 · Conducted by IIT Madras</div>
+        </div>
+      </div>
+
+      <div class="award-item">
+        <div class="award-dot">⭐</div>
+        <div>
+          <div class="award-name">INSPIRE Scholarship</div>
+          <div class="award-body">Department of Science and Technology (DST), Govt. of India · Awarded for being in the top 1% meritorious students in Class 12</div>
+        </div>
+      </div>
+
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section id="contact">
     <div class="contact-box">
       <h2>Get in Touch</h2>
-      <p>I'm always open to research discussions, collaborations, and academic conversations.</p>
+      <p>Open to research discussions, collaborations, and academic conversations.</p>
       <div class="contact-links">
         <a href="mailto:mahendras@iisc.ac.in" class="contact-btn">✉ mahendras@iisc.ac.in</a>
         <a href="https://www.linkedin.com/in/mahendra-singh-50b31a144/" target="_blank" class="contact-btn">🔗 LinkedIn</a>
@@ -678,7 +351,7 @@
 
 <footer>
   <p>© 2025 Mahendra Singh · Centre for Atmospheric and Oceanic Sciences, IISc Bangalore</p>
-  <p style="margin-top: 0.4rem;">Built with HTML · Hosted on GitHub Pages</p>
+  <p style="margin-top:0.4rem;">Hosted on GitHub Pages</p>
 </footer>
 
 </body>
