@@ -4,7 +4,6 @@
   <meta name="description" content="Mahendra Singh, PhD Scholar at IISc Bangalore. Research publications, academic profile, awards and contact information.">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://mahendra061995.github.io/">
-  
   <meta property="og:title" content="Mahendra Singh | PhD Scholar, IISc Bangalore">
   <meta property="og:description" content="Academic homepage with research, publications and profile.">
   <meta property="og:url" content="https://mahendra061995.github.io/">
@@ -76,32 +75,10 @@
     .research-pubs-label { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
     .research-pubs a { display: block; font-size: 0.84rem; color: var(--ocean); text-decoration: none; margin-bottom: 0.5rem; line-height: 1.55; }
     .research-pubs a:hover { text-decoration: underline; }
-
-    /* Two-column layout: figure left, content right */
-    .research-cols {
-      display: grid;
-      grid-template-columns: 300px 1fr;
-      gap: 1.75rem;
-      align-items: start;
-    }
-    .research-figure img {
-      width: 100%;
-      border-radius: 8px;
-      border: 1px solid rgba(26,111,163,0.15);
-      display: block;
-    }
-    .research-figure figcaption {
-      font-size: 0.76rem;
-      color: var(--muted);
-      margin-top: 0.5rem;
-      text-align: center;
-      font-style: italic;
-      line-height: 1.45;
-    }
-    /* On small screens, stack vertically */
-    @media (max-width: 720px) {
-      .research-cols { grid-template-columns: 1fr; }
-    }
+    .research-cols { display: grid; grid-template-columns: 300px 1fr; gap: 1.75rem; align-items: start; }
+    .research-figure img { width: 100%; border-radius: 8px; border: 1px solid rgba(26,111,163,0.15); display: block; }
+    .research-figure figcaption { font-size: 0.76rem; color: var(--muted); margin-top: 0.5rem; text-align: center; font-style: italic; line-height: 1.45; }
+    @media (max-width: 720px) { .research-cols { grid-template-columns: 1fr; } }
 
     /* ── PUBLICATIONS ─────────────────────────────────── */
     .pub-list { display: flex; flex-direction: column; gap: 1.1rem; }
@@ -123,6 +100,76 @@
     .award-name { font-weight: 500; color: var(--deep); font-size: 0.95rem; line-height: 1.4; }
     .award-body { font-size: 0.83rem; color: var(--muted); margin-top: 0.2rem; }
 
+    /* ── PHOTOGRAPHY ──────────────────────────────────── */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+    }
+    .photo-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      aspect-ratio: 1 / 1;
+      background: var(--mist);
+      cursor: pointer;
+    }
+    .photo-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.35s ease;
+    }
+    .photo-item:hover img { transform: scale(1.06); }
+    .photo-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(13,61,92,0.82));
+      color: var(--white);
+      font-size: 0.75rem;
+      padding: 1.5rem 0.75rem 0.6rem;
+      opacity: 0;
+      transition: opacity 0.25s;
+      line-height: 1.3;
+    }
+    .photo-item:hover .photo-caption { opacity: 1; }
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.88);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 90vw; max-height: 85vh; border-radius: 8px; object-fit: contain; box-shadow: 0 16px 60px rgba(0,0,0,0.5); }
+    .lightbox-caption { position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.8); font-size: 0.85rem; text-align: center; white-space: nowrap; }
+    .lightbox-close { position: absolute; top: 1.25rem; right: 1.5rem; color: var(--white); font-size: 1.8rem; cursor: pointer; line-height: 1; opacity: 0.7; transition: opacity 0.2s; background: none; border: none; }
+    .lightbox-close:hover { opacity: 1; }
+    @media (max-width: 600px) { .photo-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    /* ── NEWS ─────────────────────────────────────────── */
+    .news-list { display: flex; flex-direction: column; gap: 0.65rem; }
+    .news-item {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      padding: 0.75rem 1rem;
+      background: var(--white);
+      border-radius: 10px;
+      border-left: 3px solid var(--ocean);
+      font-size: 0.88rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .news-item:hover { border-color: var(--accent); box-shadow: 0 2px 10px rgba(26,111,163,0.08); }
+    .news-date { font-size: 0.75rem; color: var(--accent); font-weight: 500; white-space: nowrap; min-width: 70px; letter-spacing: 0.03em; }
+    .news-text { color: #2a3540; line-height: 1.55; flex: 1; }
+    .news-text a { color: var(--ocean); text-decoration: none; font-weight: 500; }
+    .news-text a:hover { text-decoration: underline; }
+
     /* ── CONTACT ──────────────────────────────────────── */
     .contact-box { background: linear-gradient(135deg, var(--deep) 0%, var(--ocean) 100%); border-radius: 16px; padding: 2.5rem; color: var(--white); text-align: center; }
     .contact-box h2 { font-family: 'Lora', serif; font-size: 1.6rem; margin-bottom: 0.75rem; }
@@ -143,6 +190,13 @@
 </head>
 <body>
 
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <button class="lightbox-close" onclick="document.getElementById('lightbox').classList.remove('open')">✕</button>
+  <img id="lightbox-img" src="" alt="" />
+  <div class="lightbox-caption" id="lightbox-cap"></div>
+</div>
+
 <nav>
   <div class="nav-inner">
     <a href="#" class="nav-logo">Mahendra Singh</a>
@@ -152,6 +206,8 @@
       <li><a href="#research">Research</a></li>
       <li><a href="#publications">Publications</a></li>
       <li><a href="#awards">Awards</a></li>
+      <li><a href="#photography">Photography</a></li>
+      <li><a href="#news">News</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
@@ -209,35 +265,30 @@
     <h2 class="section-title">Education</h2>
     <p class="section-sub">Academic journey across India's premier institutions</p>
     <div class="timeline">
-
       <div class="tl-item">
         <div class="tl-year">2021 – Present</div>
         <div class="tl-degree">PhD, Atmospheric and Oceanic Sciences</div>
         <div class="tl-inst"><a href="https://caos.iisc.ac.in/" target="_blank">Centre for Atmospheric and Oceanic Sciences (CAOS)</a></div>
         <div class="tl-detail">Indian Institute of Science (IISc), Bangalore</div>
       </div>
-
       <div class="tl-item">
         <div class="tl-year">2019 – 2021</div>
         <div class="tl-degree">M.Tech., Earth System Science and Technology</div>
         <div class="tl-inst"><a href="http://www.iitkgp.ac.in/" target="_blank">Centre for Ocean, River, Atmosphere, and Land Sciences (CORAL)</a></div>
         <div class="tl-detail">Indian Institute of Technology Kharagpur (IIT KGP)</div>
       </div>
-
       <div class="tl-item">
         <div class="tl-year">2015 – 2017</div>
         <div class="tl-degree">M.Sc., Physics</div>
         <div class="tl-inst"><a href="https://www.iitk.ac.in/phy/" target="_blank">Department of Physics</a></div>
         <div class="tl-detail">Indian Institute of Technology Kanpur (IIT Kanpur)</div>
       </div>
-
       <div class="tl-item">
         <div class="tl-year">2012 – 2015</div>
         <div class="tl-degree">B.Sc., Physics, Mathematics and Chemistry</div>
         <div class="tl-inst"><a href="http://csjmu.ac.in/" target="_blank">Chhatrapati Shahu Ji Maharaj University</a></div>
         <div class="tl-detail">Kanpur</div>
       </div>
-
     </div>
   </section>
 
@@ -246,24 +297,13 @@
     <h2 class="section-title">Research</h2>
     <p class="section-sub">Current projects on monsoon LPS and stratospheric geoengineering</p>
 
-    <!-- Research Item 1: Figure LEFT, Text + Publication RIGHT -->
     <div class="research-item">
       <h3>Response of Monsoon Low-Pressure Systems to UNIFORM Geoengineering</h3>
-
       <div class="research-cols">
-
-        <!-- LEFT: Figure -->
         <figure class="research-figure">
-          <img
-            src="TS_anomaly_global.png"
-            alt="Global surface temperature anomalies under UNIFORM geoengineering"
-          />
-          <figcaption>
-            Fig. 1: Global surface temperature anomalies under UNIFORM geoengineering vs doubled CO₂ (CESM2.1.3)
-          </figcaption>
+          <img src="TS_anomaly_global.png" alt="Global surface temperature anomalies under UNIFORM geoengineering" />
+          <figcaption>Fig. 1: Global surface temperature anomalies under UNIFORM geoengineering vs doubled CO₂ (CESM2.1.3)</figcaption>
         </figure>
-
-        <!-- RIGHT: Text + Publication -->
         <div>
           <p>
             This work investigates how Low-Pressure Systems (LPS) during the Indian Summer Monsoon respond under the
@@ -275,35 +315,23 @@
             and moisture transport — key drivers of LPS formation — highlighting that geoengineering impacts extend
             beyond global temperature recovery and can significantly influence regional rainfall and climate risks over South Asia.
           </p>
-        <div class="research-pubs">
-          <div class="research-pubs-label">Related Publication</div>
-          <a href="https://ams.confex.com/ams/106ANNUAL/meetingapp.cgi/Paper/475141" target="_blank">
-            Singh, M., Bala, G., and Seshadri, A. K. (2026). Response of the Characteristics of Monsoon Low-Pressure Systems to Stratospheric Aerosol Geoengineering during the Indian Summer Monsoon Season. 106th AMS Annual Meeting, American Meteorological Society.
-          </a>
+          <div class="research-pubs">
+            <div class="research-pubs-label">Related Publication</div>
+            <a href="https://ams.confex.com/ams/106ANNUAL/meetingapp.cgi/Paper/475141" target="_blank">
+              Singh, M., Bala, G., and Seshadri, A. K. (2026). Response of the Characteristics of Monsoon Low-Pressure Systems to Stratospheric Aerosol Geoengineering during the Indian Summer Monsoon Season. 106th AMS Annual Meeting, American Meteorological Society.
+            </a>
+          </div>
         </div>
       </div>
-
-      </div>
     </div>
-    
-    <!-- Research Item 2: Figure LEFT, Text + Publication RIGHT -->
+
     <div class="research-item">
       <h3>Accounting for the Bias in the Median Track of Indian Summer Monsoon Low-Pressure Systems in an Earth System Model</h3>
-
       <div class="research-cols">
-
-        <!-- LEFT: Figure -->
         <figure class="research-figure">
-          <img
-            src="Figure12.png"
-            alt="LPS genesis density and track density in the model simulation versus ERA5."
-          />
-          <figcaption>
-            Fig. 2: LPS genesis density and track density in the model simulation (CESM2.1.3) versus ERA5.
-          </figcaption>
+          <img src="Figure12.png" alt="LPS genesis density and track density in the model simulation versus ERA5." />
+          <figcaption>Fig. 2: LPS genesis density and track density in the model simulation (CESM2.1.3) versus ERA5.</figcaption>
         </figure>
-
-        <!-- RIGHT: Text + Publication -->
         <div>
           <p>
             Indian Summer Monsoon LPS are among the most important rain-bearing weather systems over the subcontinent,
@@ -315,18 +343,18 @@
             across CMIP models, indicating a long-standing challenge in monsoon simulation that must be addressed for
             better seasonal forecasts and future climate projections.
           </p>
+          <div class="research-pubs">
+            <div class="research-pubs-label">Related Publications</div>
+            <a href="https://doi.org/10.1175/JCLI-D-25-0510.1" target="_blank">
+              Singh, M., Bala, G., &amp; Seshadri, A. K. (2026). Accounting for the bias in the median track of Indian Summer monsoon low-pressure systems in an Earth system model. Journal of Climate. doi:10.1175/JCLI-D-25-0510.1
+            </a>
+            <a href="https://doi.org/10.5194/egusphere-egu25-5990" target="_blank">
+              Singh, M., Bala, G., &amp; Seshadri, A. K. (2025). Biases in model simulations of Indian Summer monsoon low-pressure systems. EGU General Assembly, Vienna, Austria.
+            </a>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="research-pubs">
-      <div class="research-pubs-label">Related Publications</div>
-      <a href="https://doi.org/10.1175/JCLI-D-25-0510.1" target="_blank">
-        Singh, M., Bala, G., &amp; Seshadri, A. K. (2026). Accounting for the bias in the median track of Indian Summer monsoon low-pressure systems in an Earth system model. Journal of Climate. doi:10.1175/JCLI-D-25-0510.1
-      </a>
-      <a href="https://doi.org/10.5194/egusphere-egu25-5990" target="_blank">
-        Singh, M., Bala, G., &amp; Seshadri, A. K. (2025). Biases in model simulations of Indian Summer monsoon low-pressure systems. EGU General Assembly, Vienna, Austria.
-      </a>
-    </div>
-  </div>         
   </section>
 
   <!-- PUBLICATIONS -->
@@ -334,7 +362,6 @@
     <h2 class="section-title">Publications</h2>
     <p class="section-sub">Peer-reviewed articles and conference papers</p>
     <div class="pub-list">
-
       <div class="pub-item">
         <span class="pub-badge-type badge-journal">Journal Article</span>
         <a class="pub-title" href="https://doi.org/10.1175/JCLI-D-25-0510.1" target="_blank">
@@ -343,7 +370,6 @@
         <div class="pub-authors"><span class="me">Singh, M.</span>, Bala, G., &amp; Seshadri, A. K.</div>
         <div class="pub-journal">Journal of Climate, 2026 · doi:10.1175/JCLI-D-25-0510.1</div>
       </div>
-
       <div class="pub-item">
         <span class="pub-badge-type badge-conf">Conference Abstract (Poster)</span>
         <a class="pub-title" href="https://ams.confex.com/ams/106ANNUAL/meetingapp.cgi/Paper/475141" target="_blank">
@@ -352,7 +378,6 @@
         <div class="pub-authors"><span class="me">Singh, M.</span>, Bala, G., &amp; Seshadri, A. K.</div>
         <div class="pub-journal">106th AMS Annual Meeting, American Meteorological Society, 2026</div>
       </div>
-
       <div class="pub-item">
         <span class="pub-badge-type badge-conf">Conference Abstract (Poster)</span>
         <a class="pub-title" href="https://doi.org/10.5194/egusphere-egu25-5990" target="_blank">
@@ -361,7 +386,6 @@
         <div class="pub-authors"><span class="me">Singh, M.</span>, Bala, G., &amp; Seshadri, A. K.</div>
         <div class="pub-journal">EGU General Assembly Conference Abstracts, Vienna, Austria, 2025</div>
       </div>
-
     </div>
   </section>
 
@@ -370,7 +394,6 @@
     <h2 class="section-title">Awards &amp; Fellowships</h2>
     <p class="section-sub">Recognitions received throughout my academic career</p>
     <div class="award-list">
-
       <div class="award-item">
         <div class="award-dot">🏆</div>
         <div>
@@ -378,7 +401,6 @@
           <div class="award-body">August 2022 – Present · Special research fellowship for doctoral students at institutes of national importance, Government of India</div>
         </div>
       </div>
-
       <div class="award-item">
         <div class="award-dot">🎖</div>
         <div>
@@ -386,7 +408,6 @@
           <div class="award-body">January 2022 – December 2022 · Awarded for Academic Excellence</div>
         </div>
       </div>
-
       <div class="award-item">
         <div class="award-dot">🔬</div>
         <div>
@@ -394,7 +415,6 @@
           <div class="award-body">Physics · Conducted by the Council of Scientific and Industrial Research (CSIR)</div>
         </div>
       </div>
-
       <div class="award-item">
         <div class="award-dot">📐</div>
         <div>
@@ -402,7 +422,6 @@
           <div class="award-body">Physics · AIR-142 · Conducted by IIT Madras</div>
         </div>
       </div>
-
       <div class="award-item">
         <div class="award-dot">⭐</div>
         <div>
@@ -410,6 +429,91 @@
           <div class="award-body">Department of Science and Technology (DST), Govt. of India · Awarded for being in the top 1% meritorious students in Class 12</div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- PHOTOGRAPHY -->
+  <section id="photography">
+    <h2 class="section-title">Photography</h2>
+    <p class="section-sub">Moments captured through my lens — nature, fieldwork, and travels</p>
+    <div class="photo-grid">
+
+      <!-- ── ADD YOUR PHOTOS BELOW ──
+           To add a photo:
+           1. Upload the image file to your GitHub repository
+           2. Copy one <div class="photo-item"> block below
+           3. Replace "your-photo.jpg" with your filename
+           4. Replace the caption text with a short description
+      ── -->
+
+      <div class="photo-item" onclick="openLightbox('photo1.jpg', 'Caption for photo 1')">
+        <img src="photo1.jpg" alt="Photo 1" loading="lazy" />
+        <div class="photo-caption">Caption for photo 1</div>
+      </div>
+
+      <div class="photo-item" onclick="openLightbox('photo2.jpg', 'Caption for photo 2')">
+        <img src="photo2.jpg" alt="Photo 2" loading="lazy" />
+        <div class="photo-caption">Caption for photo 2</div>
+      </div>
+
+      <div class="photo-item" onclick="openLightbox('photo3.jpg', 'Caption for photo 3')">
+        <img src="photo3.jpg" alt="Photo 3" loading="lazy" />
+        <div class="photo-caption">Caption for photo 3</div>
+      </div>
+
+      <div class="photo-item" onclick="openLightbox('photo4.jpg', 'Caption for photo 4')">
+        <img src="photo4.jpg" alt="Photo 4" loading="lazy" />
+        <div class="photo-caption">Caption for photo 4</div>
+      </div>
+
+      <div class="photo-item" onclick="openLightbox('photo5.jpg', 'Caption for photo 5')">
+        <img src="photo5.jpg" alt="Photo 5" loading="lazy" />
+        <div class="photo-caption">Caption for photo 5</div>
+      </div>
+
+      <div class="photo-item" onclick="openLightbox('photo6.jpg', 'Caption for photo 6')">
+        <img src="photo6.jpg" alt="Photo 6" loading="lazy" />
+        <div class="photo-caption">Caption for photo 6</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- NEWS -->
+  <section id="news">
+    <h2 class="section-title">News &amp; Links</h2>
+    <p class="section-sub">Recent activities, features, and events I was involved in</p>
+    <div class="news-list">
+
+      <!-- ── ADD YOUR NEWS ITEMS BELOW ──
+           To add a news item:
+           1. Copy one <div class="news-item"> block
+           2. Update the date (Mon YYYY format)
+           3. Update the text and replace # with your actual URL
+      ── -->
+
+      <div class="news-item">
+        <span class="news-date">Jan 2026</span>
+        <span class="news-text">
+          Presented a poster at the <a href="https://ams.confex.com/ams/106ANNUAL/meetingapp.cgi/Paper/475141" target="_blank">106th AMS Annual Meeting</a>, New Orleans — on the response of monsoon LPS to stratospheric aerosol geoengineering.
+        </span>
+      </div>
+
+      <div class="news-item">
+        <span class="news-date">Apr 2025</span>
+        <span class="news-text">
+          Presented a poster at the <a href="https://doi.org/10.5194/egusphere-egu25-5990" target="_blank">EGU General Assembly 2025</a>, Vienna — on biases in model simulations of Indian Summer Monsoon low-pressure systems.
+        </span>
+      </div>
+
+      <div class="news-item">
+        <span class="news-date">2026</span>
+        <span class="news-text">
+          Paper published in <a href="https://doi.org/10.1175/JCLI-D-25-0510.1" target="_blank">Journal of Climate</a> — Accounting for the bias in the median track of Indian Summer monsoon low-pressure systems in an Earth system model.
+        </span>
+      </div>
+
+      <!-- Add more news items here following the same pattern -->
 
     </div>
   </section>
@@ -433,6 +537,22 @@
   <p>© 2025 Mahendra Singh · Centre for Atmospheric and Oceanic Sciences, IISc Bangalore</p>
   <p style="margin-top:0.4rem;">Hosted on GitHub Pages</p>
 </footer>
+
+<script>
+  function openLightbox(src, caption) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox-cap').textContent = caption;
+    document.getElementById('lightbox').classList.add('open');
+  }
+  function closeLightbox(e) {
+    if (e.target === document.getElementById('lightbox')) {
+      document.getElementById('lightbox').classList.remove('open');
+    }
+  }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('open');
+  });
+</script>
 
 </body>
 </html>
